@@ -36,7 +36,6 @@ function rename_svg_to_emoji($svg_file) : void {
 }
 
 $svg_files = get_svg_files(FOLDER_PATH);
-var_dump($svg_files);
 
 foreach ($svg_files as $svg_file) {
     rename_svg_to_emoji($svg_file);
