@@ -20,7 +20,7 @@ function rename_svg_to_emoji($svg_file) : void {
         return;
     }
     $file_name = pathinfo($svg_file, PATHINFO_FILENAME);
-    if (preg_match("/^([0-9a-f]{4,5})(-([0-9a-f]{4,5}))*$/i", $file_name, $matches)) {
+    if (preg_match("/^([0-9a-f]{2,5})(-([0-9a-f]{2,5}))*$/i", $file_name)) {
         $codes = explode("-", $file_name);
         $emoji = "";
         foreach ($codes as $code) {
@@ -28,7 +28,7 @@ function rename_svg_to_emoji($svg_file) : void {
         }
         $file_path = pathinfo($svg_file, PATHINFO_DIRNAME);
         $file_ext = pathinfo($svg_file, PATHINFO_EXTENSION);
-        $new_file_name = $emoji . "." . $file_ext;
+        $new_file_name = str_replace(":", "_", $emoji . "." . $file_ext);
         $new_file_path = $file_path . "/" . $new_file_name;
 
         rename($svg_file, $new_file_path);
